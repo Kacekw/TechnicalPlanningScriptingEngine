@@ -22,6 +22,12 @@
     <dependencies>
 
         <dependency>
+            <groupId>org.codehaus.izpack</groupId>
+            <artifactId>izpack-maven-plugin</artifactId>
+            <version>5.1.3</version>
+        </dependency>
+
+        <dependency>
             <groupId>net.sf.jacob-project</groupId>
             <artifactId>jacob</artifactId>
             <version>1.14.3</version>
@@ -61,10 +67,19 @@
                         </manifest>
                     </archive>
                     <descriptorRefs>
-                        <descriptorRef></descriptorRef>
-                        <!--                        mvn clean compile assembly:single-->
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
+                    <appendAssemblyId>false</appendAssemblyId>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id> <!-- this is used for inheritance merges -->
+                        <phase>package</phase> <!-- bind to the packaging phase -->
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
         </plugins>

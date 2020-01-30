@@ -12,6 +12,8 @@ import java.util.Objects;
 
 public class Main extends Application {
 
+    private static JacobLoader jacobLoader = new JacobLoader();
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
@@ -22,7 +24,6 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        JacobLoader jacobLoader = new JacobLoader();
         System.out.print("Loading jacob-dll : ");
         System.out.println(jacobLoader.loadLibrary());
 
