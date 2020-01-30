@@ -7,18 +7,16 @@ import com.jacob.com.Variant;
 
 public class SapConnection {
 
-    private ActiveXComponent SapRotWrapper, SapGui;
-    private Dispatch RotEntry;
-    private Variant ScriptEngine;
+    private ActiveXComponent SapGui;
 
     public SapConnection() {
         ComThread.InitSTA();
 
-        SapRotWrapper = new ActiveXComponent("SapROTWr.SapROTWrapper");
+        ActiveXComponent sapRotWrapper = new ActiveXComponent("SapROTWr.SapROTWrapper");
         try {
-            RotEntry = SapRotWrapper.invoke("GetROTEntry", "SAPGUI").toDispatch();
-            ScriptEngine = Dispatch.call(RotEntry, "GetScriptingEngine");
-            SapGui = new ActiveXComponent(ScriptEngine.toDispatch());
+            Dispatch rotEntry = sapRotWrapper.invoke("GetROTEntry", "SAPGUI").toDispatch();
+            Variant scriptEngine = Dispatch.call(rotEntry, "GetScriptingEngine");
+            SapGui = new ActiveXComponent(scriptEngine.toDispatch());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
