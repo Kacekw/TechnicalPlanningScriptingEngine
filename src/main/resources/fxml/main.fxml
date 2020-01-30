@@ -3,19 +3,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-  <tabs>
-    <Tab text="Backend">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <BorderPane layoutX="100.0" layoutY="53.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <top>
-                        <VBox BorderPane.alignment="CENTER">
-                           <children>
-                              <ToolBar prefHeight="40.0" prefWidth="200.0">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
+         prefWidth="800.0" tabClosingPolicy="UNAVAILABLE"
+         xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="tpse.Controller">
+    <tabs>
+        <Tab text="Backend">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <BorderPane layoutX="100.0" layoutY="53.0" prefHeight="200.0" prefWidth="200.0"
+                                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <top>
+                                <VBox BorderPane.alignment="CENTER">
+                                    <children>
+                                        <ToolBar prefHeight="40.0" prefWidth="200.0">
                                 <items>
-                                  <Button mnemonicParsing="false" text="Button" />
+                                    <Button fx:id="connectButton" mnemonicParsing="false" onAction="#checkVersion"
+                                            text="CheckVersion"/>
                                 </items>
                               </ToolBar>
                            </children>
@@ -24,7 +30,7 @@
                      <bottom>
                         <HBox BorderPane.alignment="CENTER">
                            <children>
-                              <Label text="Label" />
+                               <Label fx:id="sapConnectedBottomLeftLabel" text="No connection with SAP"/>
                            </children>
                         </HBox>
                      </bottom>

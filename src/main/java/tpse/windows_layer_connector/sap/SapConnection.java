@@ -1,4 +1,4 @@
-package tpse.sap;
+package tpse.windows_layer_connector.sap;
 
 import com.jacob.activeX.ActiveXComponent;
 import com.jacob.com.ComThread;
