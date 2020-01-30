@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="TechnicalPlanningScriptingEngine">
+    <output-path>$PROJECT_DIR$/out/artifacts/TechnicalPlanningScriptingEngine</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="tpse.Main" />
+        <option name="description" value="" />
+        <option name="height" value="500" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="Technical Planning Scripting Engine" />
+        <option name="vendor" value="KAWIT, ADMSZ" />
+        <option name="version" value="" />
+        <option name="width" value="800" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="TechnicalPlanningScriptingEngine.jar">
+        <element id="module-output" name="TechnicalPlanningScriptingEngine" />
+      </element>
+    </root>
+  </artifact>
+</component>
