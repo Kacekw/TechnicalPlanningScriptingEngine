@@ -21,10 +21,11 @@ public class SapConnection {
             SapGui = new ActiveXComponent(ScriptEngine.toDispatch());
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        } finally {
-            ComThread.Release();
         }
+    }
 
+    public void disconnect() {
+        ComThread.Release();
     }
 
     public ActiveXComponent getSapGui() {
