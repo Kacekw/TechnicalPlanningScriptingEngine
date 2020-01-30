@@ -1,7 +1,6 @@
 package tpse.windows_layer_connector;
 
 import com.jacob.com.LibraryLoader;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
