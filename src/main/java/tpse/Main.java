@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class Main extends Application {
 
     @Override
@@ -14,7 +16,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
         primaryStage.setTitle("Technical Planning Sripting Engine");
         primaryStage.setScene(new Scene(root));
-        primaryStage.getIcons().add(new Image(ClassLoader.getSystemResourceAsStream("ico/tpse.png")));
+        primaryStage.getIcons().add(new Image(Objects.requireNonNull(ClassLoader.getSystemResourceAsStream("ico/tpse.png"))));
         primaryStage.show();
     }
 
