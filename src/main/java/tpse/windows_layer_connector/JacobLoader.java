@@ -20,6 +20,9 @@ public class JacobLoader {
     public static final String DLL_PATH_FOR_64_BIT_SYSTEM = "/external_libraries/jacob-1.14.3-x64.dll";
     public static final String LOG_DLL_LOADED = "Jacob dll was loaded into memory";
     public static final String LOG_DLL_NOT_LOADED = "Library could not be loaded";
+
+    private File temporaryDll;
+    private String systemArchitecture;
     private final Log loadLibraryLog = new Log(
             "Desktop app",
             "DLL loader",
@@ -29,12 +32,11 @@ public class JacobLoader {
             null,
             LogSubTypes.SYSTEM,
             null);
-    private File temporaryDll;
-    private String systemArchitecture;
 
-    public boolean loadLibrary() {
+    public void loadLibrary() {
         try {
             String libraryPath = supplyLibraryPath();
+
             InputStream inputStream = getClass().getResource(libraryPath).openStream();
             temporaryDll = File.createTempFile(LibraryLoader
                     .getPreferredDLLName(), ".dll");
@@ -49,12 +51,12 @@ public class JacobLoader {
 
             System.load(temporaryDll.getAbsolutePath());
             System.setProperty(LibraryLoader.JACOB_DLL_PATH, temporaryDll.getPath());
+
             createInfoLog();
-            return true;
+
         } catch (Throwable e) {
             createErrorLog(e);
             e.printStackTrace();
-            return false;
         }
     }
 
