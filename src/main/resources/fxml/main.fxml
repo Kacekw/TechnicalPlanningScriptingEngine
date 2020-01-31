@@ -4,18 +4,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
-<BorderPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tpse.gui_controller.MainGuiController">
-   <center>
-       <TabPane>
-       <tabs>
-           <Tab text="Backend">
-               <content>
-                   <fx:include source="tabs/backend/backend_tab.fxml" />
-               </content>
-           </Tab>
-           <Tab text="Scheduled">
-               <content>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="500" prefWidth="700"
+            xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="tpse.gui_controller.MainGuiController">
+    <center>
+        <TabPane>
+            <tabs>
+                <Tab text="Backend">
+                    <content>
+                        <fx:include source="tabs/backend/backend_tab.fxml"/>
+                    </content>
+                </Tab>
+                <Tab text="Scheduled">
+                    <content>
                    <fx:include source="tabs/scheduled/scheduled_tab.fxml" />
                </content>
            </Tab>
@@ -52,6 +52,7 @@
                   <Font size="10.0" />
                </font>
             </Label>
+             <Region HBox.hgrow="ALWAYS"/>
          </children>
       </HBox>
    </bottom>
