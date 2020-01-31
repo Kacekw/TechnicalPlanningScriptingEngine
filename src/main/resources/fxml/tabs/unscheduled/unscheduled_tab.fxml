@@ -8,7 +8,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="tpse.gui_controller.backend.BackendTabController"
+            fx:controller="tpse.gui_controller.backend_tab.BackendTabController"
             minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 
 </AnchorPane>

@@ -1,27 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
-         prefWidth="800.0" tabClosingPolicy="UNAVAILABLE"
-         xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
-         fx:controller="tpse.gui_controller.MainGuiController">
-    <tabs>
-        <Tab text="Backend">
-            <content>
-                <fx:include source="tabs/backend/backend_tab.fxml"/>
-            </content>
-        </Tab>
-        <Tab text="Scheduled">
-            <content>
-                <fx:include source="tabs/scheduled/scheduled_tab.fxml"/>
-            </content>
-        </Tab>
-        <Tab text="Unscheduled">
-            <content>
-                <fx:include source="tabs/unscheduled/unscheduled_tab.fxml"/>
-            </content>
-        </Tab>
-    </tabs>
-</TabPane>
+<Pane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tpse.gui_controller.MainGuiController">
+   <VBox prefHeight="200.0" prefWidth="100.0">
+      <children>
+          <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+          <tabs>
+              <Tab text="Backend">
+                  <content>
+                      <fx:include source="tabs/backend/backend_tab.fxml" />
+                  </content>
+              </Tab>
+              <Tab text="Scheduled">
+                  <content>
+                      <fx:include source="tabs/scheduled/scheduled_tab.fxml" />
+                  </content>
+              </Tab>
+              <Tab text="Unscheduled">
+                  <content>
+                      <fx:include source="tabs/unscheduled/unscheduled_tab.fxml" />
+                  </content>
+              </Tab>
+          </tabs>
+         </TabPane>
+         <Separator prefWidth="200.0" />
+         <HBox>
+            <children>
+               <Label fx:id="sapConnectedBottomLeftLabel">
+                  <font>
+                     <Font size="10.0" />
+                  </font>
+                  <HBox.margin>
+                     <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                  </HBox.margin></Label>
+               <Region HBox.hgrow="ALWAYS" />
+               <Button mnemonicParsing="false" onAction="#checkVersion" text="Check connection">
+                  <font>
+                     <Font size="10.0" />
+                  </font>
+               </Button>
+            </children>
+            <opaqueInsets>
+               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+            </opaqueInsets>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+         </HBox>
+      </children>
+   </VBox>
+</Pane>
