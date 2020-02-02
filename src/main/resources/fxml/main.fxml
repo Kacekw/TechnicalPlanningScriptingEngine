@@ -2,73 +2,58 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<Pane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="tpse.Controller">
-    <children>
-        <VBox prefHeight="200.0" prefWidth="100.0">
-            <children>
-                <MenuBar>
-                    <menus>
-                        <Menu mnemonicParsing="false" text="File">
-                            <items>
-                                <MenuItem mnemonicParsing="false" text="Close"/>
-                            </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="Edit">
-                            <items>
-                                <MenuItem mnemonicParsing="false" text="Delete"/>
-                            </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="Help">
-                            <items>
-                                <MenuItem mnemonicParsing="false" onAction="#checkVersion" text="Sap Version"/>
-                                <MenuItem mnemonicParsing="false" text="About"/>
-                            </items>
-                        </Menu>
-                    </menus>
-                </MenuBar>
-                <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                         prefHeight="500.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
-                    <tabs>
-                        <Tab text="Backend">
-                            <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                    <children>
-                                        <BorderPane layoutX="100.0" layoutY="53.0" prefHeight="200.0" prefWidth="200.0"
-                                                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                            <top>
-                                                <VBox BorderPane.alignment="CENTER">
-                                                    <children>
-                                                        <ToolBar prefHeight="40.0" prefWidth="200.0"/>
-                                                    </children>
-                                                </VBox>
-                                            </top>
-                                            <bottom>
-                                                <HBox BorderPane.alignment="CENTER">
-                                                    <children>
-                                                        <Label fx:id="sapConnectedBottomLeftLabel"
-                                                               text="No connection with SAP"/>
-                                                    </children>
-                                                </HBox>
-                                            </bottom>
-                                        </BorderPane>
-                                    </children>
-                                </AnchorPane>
-                            </content>
-                        </Tab>
-                        <Tab text="Scheduled">
-                            <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
-                            </content>
-                        </Tab>
-                        <Tab text="Unscheduled">
-                            <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
-                            </content>
-                        </Tab>
-                    </tabs>
-                </TabPane>
-            </children>
-        </VBox>
-    </children>
-</Pane>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="500" prefWidth="700"
+            xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="tpse.gui_controller.MainGuiController">
+    <center>
+        <TabPane>
+            <tabs>
+                <Tab text="Backend">
+                    <content>
+                        <fx:include source="tabs/backend/backend_tab.fxml"/>
+                    </content>
+                </Tab>
+                <Tab text="Scheduled">
+                    <content>
+                   <fx:include source="tabs/scheduled/scheduled_tab.fxml" />
+               </content>
+           </Tab>
+           <Tab text="Unscheduled">
+               <content>
+                   <fx:include source="tabs/unscheduled/unscheduled_tab.fxml" />
+               </content>
+           </Tab>
+       </tabs>
+      </TabPane>
+   </center>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Connection">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#checkVersion" text="Check connection" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Preferences" />
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <bottom>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="sapConnectedBottomLeftLabel">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+             <Region HBox.hgrow="ALWAYS"/>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>
