@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TPSE.iml" filepath="$PROJECT_DIR$/TPSE.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/TechnicalPlanningScriptingEngine.iml" filepath="$PROJECT_DIR$/.idea/TechnicalPlanningScriptingEngine.iml" />
     </modules>
   </component>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="500" prefWidth="700"
-            xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="tpse.gui_controller.MainGuiController">
+<?import javafx.scene.text.Font?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="MainBorderPane" prefHeight="500" prefWidth="700"
+            xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="tpse.gui_controller.MainGuiController">
     <center>
         <TabPane>
             <tabs>
@@ -35,7 +35,12 @@
               <MenuItem mnemonicParsing="false" onAction="#checkVersion" text="Check connection" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Preferences" />
+            <Menu mnemonicParsing="false" text="Preferences">
+                <items>
+                    <MenuItem fx:id="StayOnTopMenuItem" mnemonicParsing="false" onAction="#setToStayOnTop"
+                              text="Stay on top"/>
+                </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
               <MenuItem mnemonicParsing="false" text="About" />
@@ -45,15 +50,20 @@
       </MenuBar>
    </top>
    <bottom>
-      <HBox BorderPane.alignment="CENTER">
+       <VBox BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="sapConnectedBottomLeftLabel">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Label>
-             <Region HBox.hgrow="ALWAYS"/>
+             <Separator VBox.vgrow="ALWAYS"/>
+             <HBox>
+                 <children>
+                     <Label id="BottomLeftLabel" fx:id="BottomLeftLabel">
+                         <font>
+                             <Font size="10.0"/>
+                         </font>
+                     </Label>
+                     <Region HBox.hgrow="ALWAYS"/>
+                 </children>
+             </HBox>
          </children>
-      </HBox>
+       </VBox>
    </bottom>
 </BorderPane>
