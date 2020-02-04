@@ -16,8 +16,10 @@ import static tpse.log.Log.LOG_UPDATE_URL;
 
 public class JacobLoader {
 
-    public static final String DLL_PATH_FOR_32_BIT_SYSTEM = "/external_libraries/jacob-1.14.3-x86.dll";
-    public static final String DLL_PATH_FOR_64_BIT_SYSTEM = "/external_libraries/jacob-1.14.3-x64.dll";
+    public static final String LIBRARY_SUFFIX = ".dll";
+    public static final String ROOT_PATH_TO_LIBRARIES = "/external_libraries/";
+    public static final String LIBRARY_32_BIT_NAME = "jacob-1.14.3-x86";
+    public static final String LIBRARY_64_BIT_NAME = "jacob-1.14.3-x64";
     public static final String LOG_DLL_LOADED = "Jacob dll was loaded into memory";
     public static final String LOG_DLL_NOT_LOADED = "Library could not be loaded";
 
@@ -36,18 +38,25 @@ public class JacobLoader {
     public void loadLibrary() {
         try {
             String libraryPath = supplyLibraryPath();
+            String temporaryDirectory = System.getProperty("java.io.tmpdir");
 
-            InputStream inputStream = getClass().getResource(libraryPath).openStream();
-            temporaryDll = File.createTempFile(LibraryLoader
-                    .getPreferredDLLName(), ".dll");
+            temporaryDll = new File(temporaryDirectory + libraryPath + LIBRARY_SUFFIX);
 
-            FileOutputStream outputStream = new FileOutputStream(temporaryDll);
+            File libraryInTemporaryFolder = new File(temporaryDll.getPath());
 
-            byte[] array = new byte[8192];
-            for (int i = inputStream.read(array); i != -1; i = inputStream.read(array)) {
-                outputStream.write(array, 0, i);
+            if (!libraryInTemporaryFolder.exists()) {
+                InputStream inputStream = getClass().getResource(
+                        ROOT_PATH_TO_LIBRARIES + libraryPath + LIBRARY_SUFFIX
+                ).openStream();
+
+                FileOutputStream outputStream = new FileOutputStream(temporaryDll);
+
+                byte[] array = new byte[8192];
+                for (int i = inputStream.read(array); i != -1; i = inputStream.read(array)) {
+                    outputStream.write(array, 0, i);
+                }
+                outputStream.close();
             }
-            outputStream.close();
 
             System.load(temporaryDll.getAbsolutePath());
             System.setProperty(LibraryLoader.JACOB_DLL_PATH, temporaryDll.getPath());
@@ -88,9 +97,9 @@ public class JacobLoader {
 
         switch (systemArchitecture) {
             case "32":
-                return DLL_PATH_FOR_32_BIT_SYSTEM;
+                return LIBRARY_32_BIT_NAME;
             case "64":
-                return DLL_PATH_FOR_64_BIT_SYSTEM;
+                return LIBRARY_64_BIT_NAME;
             default:
                 throw new IOException("System architecture is unknown");
         }
