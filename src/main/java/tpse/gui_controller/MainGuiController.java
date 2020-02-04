@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import tpse.gui_controller.popups.update.Update;
 import tpse.updater.new_version_checker.CheckForUpdates;
 import tpse.windows_layer_connector.sap.SapConnection;
 
@@ -54,6 +55,6 @@ public class MainGuiController {
     }
 
     public void checkForUpdates() {
-        CheckForUpdates.handleVersionControl();
+        CheckForUpdates.checkForUpdate();
     }
 }

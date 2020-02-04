@@ -2,6 +2,7 @@ package tpse.gui_controller.popups.update;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import tpse.updater.deploying.UpdaterDeploy;
 
 import java.util.Optional;
 
@@ -12,7 +13,7 @@ public class Update {
     private final String UPDATE_POPUP_HEADER = "Update is available, do you want to update?";
     private final String UPDATE_POPUP_CONTEXT = "Choose ok to download and restart the application.";
 
-    public boolean showUpdatePopup() {
+    public void showUpdatePopup() {
         Alert updatePopup = new Alert(Alert.AlertType.CONFIRMATION);
         updatePopup.setTitle(UPDATE_POPUP_TITLE);
         updatePopup.setHeaderText(UPDATE_POPUP_HEADER);
@@ -20,6 +21,11 @@ public class Update {
 //        updatePopup.initOwner(updatePopup.getOwner());
 
         Optional<ButtonType> result = updatePopup.showAndWait();
-        return (result.get() == ButtonType.OK);
+        if (result.get() == ButtonType.OK) {
+            updatePopup.close();
+
+            UpdaterDeploy ud = new UpdaterDeploy();
+            ud.start();
+        }
     }
 }

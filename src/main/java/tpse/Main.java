@@ -11,7 +11,6 @@ import tpse.windows_layer_connector.JacobLoader;
 
 import java.util.Objects;
 
-
 public class Main extends Application {
     private static JacobLoader jacobLoader = new JacobLoader();
     private final String TITLE_BAR_TEXT = "Technical Planning Sripting Engine";
@@ -32,7 +31,8 @@ public class Main extends Application {
         primaryStage.getIcons().add(new Image(Objects.requireNonNull(ClassLoader.getSystemResourceAsStream(APP_ICON_PATH))));
         primaryStage.show();
 
-        CheckForUpdates.handleVersionControl();
+        CheckForUpdates.checkForUpdate();
+
     }
 
 
