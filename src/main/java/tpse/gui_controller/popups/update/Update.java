@@ -22,10 +22,10 @@ public class Update {
 
         Optional<ButtonType> result = updatePopup.showAndWait();
         if (result.get() == ButtonType.OK) {
-            updatePopup.close();
 
             UpdaterDeploy ud = new UpdaterDeploy();
-            ud.start();
+            ud.update();
+            updatePopup.close();
         }
     }
 }
