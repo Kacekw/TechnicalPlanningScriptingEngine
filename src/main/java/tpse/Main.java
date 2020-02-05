@@ -8,6 +8,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import tpse.updater.new_version_checker.CheckForUpdates;
 import tpse.windows_layer_connector.JacobLoader;
+import tpse.windows_layer_connector.sap.SapConnection;
+import tpse.windows_layer_connector.sap.Sessions;
 
 import java.util.Objects;
 
@@ -19,6 +21,13 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         new Thread(() -> jacobLoader.loadLibrary()).start();
+
+        try {
+            Sessions sessions = new Sessions(new SapConnection().getSapGui());
+            sessions.printConnections();
+        } catch (NoSuchFieldException nsf) {
+            nsf.printStackTrace();
+        }
 
         launch(args);
     }
@@ -32,6 +41,7 @@ public class Main extends Application {
         primaryStage.show();
 
         CheckForUpdates.checkForUpdate();
+
 
     }
 

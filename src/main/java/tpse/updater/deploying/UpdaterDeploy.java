@@ -20,9 +20,7 @@ public class UpdaterDeploy {
     private final File updaterFileInTemporaryFolder = new File(temporaryDirectory + UPDATER_FILE_NAME);
 
     public void update() {
-        System.out.println("Checking if file exists in " + updaterFileInTemporaryFolder.getPath());
         if (!updaterIsDeployed()) {
-            System.out.println("Jar was not found, deploying...");
             deployUpdater();
         }
 
@@ -35,8 +33,6 @@ public class UpdaterDeploy {
     private boolean runUpdater() {
         try {
             File localFile = new File(UpdaterDeploy.class.getProtectionDomain().getCodeSource().getLocation().toURI());
-            System.out.println("Running " + "java " + "-jar " + updaterFileInTemporaryFolder.getPath().replace("\\", "/") + " " +
-                    localFile.getPath().replace("\\", "/"));
             ProcessBuilder pb = new ProcessBuilder("java", "-jar", updaterFileInTemporaryFolder.getPath().replace("\\", "/"),
                     localFile.getPath().replace("\\", "/"));
             pb.inheritIO();
@@ -61,7 +57,6 @@ public class UpdaterDeploy {
 
             return true;
         } catch (IOException e) {
-            System.out.println("Error in deployUpdater");
             e.printStackTrace();
             return false;
         }

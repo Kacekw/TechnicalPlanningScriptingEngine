@@ -2,22 +2,33 @@ package tpse.gui_controller;
 
 import com.jacob.activeX.ActiveXComponent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import tpse.gui_controller.popups.update.Update;
 import tpse.updater.new_version_checker.CheckForUpdates;
 import tpse.windows_layer_connector.sap.SapConnection;
 
-public class MainGuiController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class MainGuiController implements Initializable {
 
     @FXML
     private Label BottomLeftLabel;
     @FXML
+    private Label VersionLabel;
+    @FXML
     private BorderPane MainBorderPane;
     @FXML
     private MenuItem StayOnTopMenuItem;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        final String version = String.format("Ver. %s", this.getClass().getPackage().getImplementationVersion());
+        VersionLabel.setText(version);
+    }
 
     public void checkVersion() {
         //TODO remove that part when finished with configuring sap connections details
@@ -49,6 +60,7 @@ public class MainGuiController {
             stage.setAlwaysOnTop(false);
             StayOnTopMenuItem.setText("Stay on top");
         } else {
+
             stage.setAlwaysOnTop(true);
             StayOnTopMenuItem.setText("Turn off staying on top");
         }

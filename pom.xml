@@ -58,6 +58,9 @@
                     <archive>
                         <manifest>
                             <mainClass>tpse.Main</mainClass>
+                            <addDefaultImplementationEntries>
+                                true
+                            </addDefaultImplementationEntries>
                         </manifest>
                     </archive>
                     <descriptorRefs>
