@@ -8,14 +8,14 @@ import com.jacob.com.Variant;
 
 public class SapConnection {
 
-    private ActiveXComponent SapGui;
+    private static ActiveXComponent SapGui;
 
 
     public void disconnect() {
         ComThread.Release();
     }
 
-    public ActiveXComponent getSapGui() throws NoSuchFieldException {
+    public static ActiveXComponent getSapGui() {
         ComThread.InitSTA();
         try {
             ActiveXComponent sapRotWrapper = new ActiveXComponent("SapROTWr.SapROTWrapper");
@@ -25,7 +25,7 @@ public class SapConnection {
             return SapGui;
         } catch (ComFailException cfe) {
             System.out.println(cfe.getMessage());
-            throw new NoSuchFieldException();
+            return SapGui;
         }
 
     }

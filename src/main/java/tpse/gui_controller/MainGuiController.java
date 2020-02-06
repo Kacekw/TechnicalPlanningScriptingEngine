@@ -11,14 +11,13 @@ import tpse.updater.new_version_checker.CheckForUpdates;
 import tpse.windows_layer_connector.sap.SapConnection;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainGuiController implements Initializable {
 
     @FXML
-    private Label BottomLeftLabel;
-    @FXML
-    private Label VersionLabel;
+    private Label BottomLeftLabel, VersionLabel;
     @FXML
     private BorderPane MainBorderPane;
     @FXML
@@ -32,23 +31,25 @@ public class MainGuiController implements Initializable {
 
     public void checkVersion() {
         //TODO remove that part when finished with configuring sap connections details
-        System.out.println("Connecting to SAPGui");
         SapConnection sapConnection = new SapConnection();
-        ActiveXComponent sapGui = null;
+        String connectionDetails;
+        System.out.println("Connecting to SAPGui");
+        ActiveXComponent sapGui;
 
         try {
             sapGui = sapConnection.getSapGui();
-        } catch (NoSuchFieldException e) {
-            setBottomLabelText("Connecting to SAP failed!");
+            connectionDetails = String.format("Connected to Sap version %s.%s", sapGui.getProperty("MajorVersion"), sapGui.getProperty("MinorVersion"));
+        } catch (IllegalStateException ise) {
+            connectionDetails = "Connecting to SAP failed!";
         }
 
-        String connectionDetails = String.format("Connected to Sap version %s.%s", sapGui.getProperty("MajorVersion"), sapGui.getProperty("MinorVersion"));
         setBottomLabelText(connectionDetails);
         System.out.println(connectionDetails);
         sapConnection.disconnect();
         System.out.println("Disconnected from SAP");
     }
 
+    @FXML
     public void setBottomLabelText(String textToShow) {
         BottomLeftLabel.setText(textToShow);
     }

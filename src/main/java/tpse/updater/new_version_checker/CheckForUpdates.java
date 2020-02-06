@@ -1,6 +1,8 @@
 package tpse.updater.new_version_checker;
 
 
+import tpse.gui_controller.MainGuiController;
+import tpse.gui_controller.backend_tab.BackendTabController;
 import tpse.gui_controller.popups.update.Update;
 
 import java.io.File;
@@ -14,8 +16,16 @@ public class CheckForUpdates {
     private static long LOCAL_FILE_MODIFIED_DATE;
 
 
-    public static boolean updateIsAvailable() {
-        return REMOTE_FILE_MODIFIED_DATE != LOCAL_FILE_MODIFIED_DATE && REMOTE_FILE_MODIFIED_DATE != 0;
+    public static void checkForUpdate() {
+        getRemoteFileModifiedDate();
+        getLocalFileModifiedDate();
+
+        if (REMOTE_FILE_MODIFIED_DATE != LOCAL_FILE_MODIFIED_DATE) {
+            if (REMOTE_FILE_MODIFIED_DATE != 0) {
+                Update update = new Update();
+                update.showUpdatePopup();
+            }
+        }
     }
 
     private static void getRemoteFileModifiedDate() {
@@ -29,16 +39,6 @@ public class CheckForUpdates {
             LOCAL_FILE_MODIFIED_DATE = localFile.lastModified();
         } catch (URISyntaxException use) {
             use.printStackTrace();
-        }
-    }
-
-    public static void checkForUpdate() {
-        getRemoteFileModifiedDate();
-        getLocalFileModifiedDate();
-
-        if (updateIsAvailable()) {
-            Update update = new Update();
-            update.showUpdatePopup();
         }
     }
 }
