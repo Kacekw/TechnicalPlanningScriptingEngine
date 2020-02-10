@@ -2,17 +2,16 @@ package tpse.windows_layer_connector.sap;
 
 import com.jacob.activeX.ActiveXComponent;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Sessions {
 
     private static ActiveXComponent sapGui = SapConnection.getSapGui();
     private Map<String, ActiveXComponent> sessions = new HashMap<>();
 
-    public static Map<ActiveXComponent, String> getAllCurrentSessions() {
+    public static List<Session> getAllCurrentSessions() {
         ActiveXComponent connections = new ActiveXComponent(sapGui.invokeGetComponent("Connections"));
-        Map<ActiveXComponent, String> tmpMap = new HashMap<>();
+        List<Session> tmpList = new ArrayList<>();
 
         for (int i = 0; i < connections.getPropertyAsInt("Count"); i++) {
 
@@ -21,13 +20,11 @@ public class Sessions {
 
             for (int s = 0; s < sessions.getPropertyAsInt("Count"); s++) {
 
-                ActiveXComponent session = new ActiveXComponent(children.invoke("Children", s).toDispatch());
-                ActiveXComponent window = new ActiveXComponent(session.invoke("findById", "wnd[0]").toDispatch());
-                String windowTitle = window.getPropertyAsString("text");
-                tmpMap.put(window, windowTitle);
+                Session session = new Session(new ActiveXComponent(children.invoke("Children", s).toDispatch()));
+                tmpList.add(session);
             }
         }
 
-        return tmpMap;
+        return tmpList;
     }
 }

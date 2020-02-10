@@ -11,7 +11,7 @@ public class SapConnection {
     private static ActiveXComponent SapGui;
 
 
-    public void disconnect() {
+    public static void disconnect() {
         ComThread.Release();
     }
 

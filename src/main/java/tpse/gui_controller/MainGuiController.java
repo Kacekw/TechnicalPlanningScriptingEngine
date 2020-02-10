@@ -11,7 +11,6 @@ import tpse.updater.new_version_checker.CheckForUpdates;
 import tpse.windows_layer_connector.sap.SapConnection;
 
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainGuiController implements Initializable {
@@ -39,7 +38,7 @@ public class MainGuiController implements Initializable {
         try {
             sapGui = sapConnection.getSapGui();
             connectionDetails = String.format("Connected to Sap version %s.%s", sapGui.getProperty("MajorVersion"), sapGui.getProperty("MinorVersion"));
-        } catch (IllegalStateException ise) {
+        } catch (Exception e) {
             connectionDetails = "Connecting to SAP failed!";
         }
 
