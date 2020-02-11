@@ -8,7 +8,6 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import tpse.updater.new_version_checker.CheckForUpdates;
 import tpse.windows_layer_connector.JacobLoader;
-import tpse.windows_layer_connector.sap.Sessions;
 
 import java.util.Objects;
 
@@ -16,9 +15,9 @@ public class Main extends Application {
 
     private static JacobLoader jacobLoader = new JacobLoader();
 
-    private final String TITLE_BAR_TEXT = "Technical Planning Sripting Engine";
-    private final String MAIN_FXML_PATH = "/fxml/main.fxml";
-    private final String APP_ICON_PATH = "ico/tpse.png";
+    public static final String TITLE_BAR_TEXT = "Technical Planning Sripting Engine";
+    public static final String MAIN_FXML_PATH = "/fxml/main.fxml";
+    public static final String APP_ICON_PATH = "ico/tpse.png";
 
 
     public static void main(String[] args) {

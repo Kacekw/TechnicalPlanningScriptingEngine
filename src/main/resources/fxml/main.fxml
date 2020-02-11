@@ -13,27 +13,27 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="MainBorderPane" prefHeight="500" prefWidth="700"
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="MainBorderPane" prefHeight="506" prefWidth="900"
             xmlns="http://javafx.com/javafx/8.0.171" fx:controller="tpse.gui_controller.MainGuiController">
     <center>
         <TabPane>
             <tabs>
-                <Tab text="Backend">
+                <Tab closable="false" text="Backend">
                     <content>
                         <fx:include source="tabs/backend/backend_tab.fxml"/>
                     </content>
                 </Tab>
-                <Tab text="Scheduled">
+                <Tab closable="false" text="Scheduled">
                     <content>
                         <fx:include source="tabs/scheduled/scheduled_tab.fxml"/>
                     </content>
                 </Tab>
-                <Tab text="Unscheduled">
+                <Tab closable="false" text="Unscheduled">
                     <content>
                         <fx:include source="tabs/unscheduled/unscheduled_tab.fxml"/>
                     </content>
                 </Tab>
-                <Tab text="Dispatching">
+                <Tab closable="false" text="Dispatching">
                     <content>
                         <fx:include source="tabs/unscheduled/unscheduled_tab.fxml"/>
                     </content>

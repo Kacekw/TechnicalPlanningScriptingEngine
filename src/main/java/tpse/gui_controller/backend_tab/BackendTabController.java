@@ -1,14 +1,18 @@
 package tpse.gui_controller.backend_tab;
 
 
+import com.jacob.com.ComFailException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import tpse.windows_layer_connector.sap.Sessions;
 import tpse.windows_layer_connector.sap.Session;
 
 import java.util.*;
 import java.util.stream.Collectors;
+
 
 public class BackendTabController {
 
@@ -18,6 +22,9 @@ public class BackendTabController {
     private ListView backendListView;
     @FXML
     private Button connectToSapButton;
+    @FXML
+    private ImageView imagePreview;
+
 
     @FXML
     private void populateListOfSapWindows() {
@@ -27,7 +34,10 @@ public class BackendTabController {
                         .map(Session::getWindowTitle)
                         .collect(Collectors.toList())
         );
-        connectToSapButton.setText("Refresh");
+
+        if (!connectToSapButton.getText().equalsIgnoreCase("refresh")) {
+            connectToSapButton.setText("Refresh");
+        }
     }
 
     private List<Session> initializeListOfSessions() {
@@ -36,12 +46,26 @@ public class BackendTabController {
     }
 
     @FXML
-    private void sessionsListOnMouseClick() {
+    private void sessionsListOnMouseClick(MouseEvent mouseEvent) {
 
-        System.out.println(tmpListOfSessions.get(backendListView.getSelectionModel().getSelectedIndex()).getTransactionName());
+        Integer selectedItemOnListIndex = backendListView.getSelectionModel().getSelectedIndex();
+
+        try {
+            String transaction = tmpListOfSessions.get(selectedItemOnListIndex).getTransactionName();
+            String windowTitle = tmpListOfSessions.get(selectedItemOnListIndex).getWindowTitle();
+
+            showPreviewImage(selectedItemOnListIndex);
+        } catch (ComFailException cfe) {
+            populateListOfSapWindows();
+        }
+
     }
 
-
+    private void showPreviewImage(Integer listIndex) {
+        imagePreview.setPreserveRatio(true);
+        imagePreview.setFitWidth(backendListView.getWidth());
+        imagePreview.setImage(tmpListOfSessions.get(listIndex).getPreviewImageOfSapSession());
+    }
 }
 
 
