@@ -54,17 +54,17 @@ public class BackendTabController {
             String transaction = tmpListOfSessions.get(selectedItemOnListIndex).getTransactionName();
             String windowTitle = tmpListOfSessions.get(selectedItemOnListIndex).getWindowTitle();
 
-            showPreviewImage(selectedItemOnListIndex);
+            showPreviewImage(tmpListOfSessions.get(selectedItemOnListIndex));
         } catch (ComFailException cfe) {
             populateListOfSapWindows();
         }
 
     }
 
-    private void showPreviewImage(Integer listIndex) {
+    private void showPreviewImage(Session session) {
         imagePreview.setPreserveRatio(true);
         imagePreview.setFitWidth(backendListView.getWidth());
-        imagePreview.setImage(tmpListOfSessions.get(listIndex).getPreviewImageOfSapSession());
+        imagePreview.setImage(session.getPreviewImageOfSapSession());
     }
 }
 
