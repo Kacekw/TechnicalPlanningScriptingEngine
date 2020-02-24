@@ -13,6 +13,8 @@ import tpse.windows_layer_connector.sap.SapConnection;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static tpse.windows_layer_connector.sap.SapConnection.getSapGui;
+
 public class MainGuiController implements Initializable {
 
     @FXML
@@ -36,7 +38,7 @@ public class MainGuiController implements Initializable {
         ActiveXComponent sapGui;
 
         try {
-            sapGui = sapConnection.getSapGui();
+            sapGui = getSapGui();
             connectionDetails = String.format("Connected to Sap version %s.%s", sapGui.getProperty("MajorVersion"), sapGui.getProperty("MinorVersion"));
         } catch (Exception e) {
             connectionDetails = "Connecting to SAP failed!";
@@ -44,7 +46,7 @@ public class MainGuiController implements Initializable {
 
         setBottomLabelText(connectionDetails);
         System.out.println(connectionDetails);
-        sapConnection.disconnect();
+        SapConnection.disconnect();
         System.out.println("Disconnected from SAP");
     }
 

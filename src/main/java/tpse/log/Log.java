@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 public class Log {
 
+    //TODO task list update url is going to be used with scheduled_tab
     public static final String TASK_LIST_UPDATE_URL = "http://n41763.vestas.net/tasklist/";
     public static final String LOG_UPDATE_URL = "http://n41763.vestas.net/log/";
 

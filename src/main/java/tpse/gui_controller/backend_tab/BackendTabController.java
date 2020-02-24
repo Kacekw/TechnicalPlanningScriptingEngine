@@ -7,10 +7,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import tpse.windows_layer_connector.sap.Sessions;
 import tpse.windows_layer_connector.sap.Session;
+import tpse.windows_layer_connector.sap.Sessions;
 
-import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 
@@ -48,12 +48,9 @@ public class BackendTabController {
     @FXML
     private void sessionsListOnMouseClick(MouseEvent mouseEvent) {
 
-        Integer selectedItemOnListIndex = backendListView.getSelectionModel().getSelectedIndex();
+        int selectedItemOnListIndex = backendListView.getSelectionModel().getSelectedIndex();
 
         try {
-            String transaction = tmpListOfSessions.get(selectedItemOnListIndex).getTransactionName();
-            String windowTitle = tmpListOfSessions.get(selectedItemOnListIndex).getWindowTitle();
-
             showPreviewImage(tmpListOfSessions.get(selectedItemOnListIndex));
         } catch (ComFailException cfe) {
             populateListOfSapWindows();

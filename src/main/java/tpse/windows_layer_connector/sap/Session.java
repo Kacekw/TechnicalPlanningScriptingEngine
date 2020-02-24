@@ -14,7 +14,7 @@ public class Session {
     private ActiveXComponent window;
     private String windowTitle;
 
-    public Session(ActiveXComponent session) {
+    Session(ActiveXComponent session) {
         this.session = session;
         this.window = new ActiveXComponent(session.invoke("findById", "wnd[0]").toDispatch());
         windowTitle = window.getPropertyAsString("text");
@@ -39,7 +39,7 @@ public class Session {
         return sessionInfo.getPropertyAsInt("ScreenNumber");
     }
 
-    public void refreshSessionInfo() {
+    private void refreshSessionInfo() {
         if (sessionInfo != null) sessionInfo.safeRelease();
 
         sessionInfo = new ActiveXComponent(session.invoke("info").toDispatch());

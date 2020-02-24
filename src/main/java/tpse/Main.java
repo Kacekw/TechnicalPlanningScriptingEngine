@@ -15,9 +15,9 @@ public class Main extends Application {
 
     private static JacobLoader jacobLoader = new JacobLoader();
 
-    public static final String TITLE_BAR_TEXT = "Technical Planning Sripting Engine";
-    public static final String MAIN_FXML_PATH = "/fxml/main.fxml";
-    public static final String APP_ICON_PATH = "ico/tpse.png";
+    private static final String TITLE_BAR_TEXT = "Technical Planning Sripting Engine";
+    private static final String MAIN_FXML_PATH = "/fxml/main.fxml";
+    private static final String APP_ICON_PATH = "ico/tpse.png";
 
 
     public static void main(String[] args) {

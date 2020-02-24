@@ -16,14 +16,20 @@ import static tpse.log.Log.LOG_UPDATE_URL;
 
 public class JacobLoader {
 
-    public static final String LIBRARY_SUFFIX = ".dll";
-    public static final String ROOT_PATH_TO_LIBRARIES = "/external_libraries/";
-    public static final String LIBRARY_32_BIT_NAME = "jacob-1.14.3-x86";
-    public static final String LIBRARY_64_BIT_NAME = "jacob-1.14.3-x64";
-    public static final String LOG_DLL_LOADED = "Jacob dll was loaded into memory";
-    public static final String LOG_DLL_NOT_LOADED = "Library could not be loaded";
+    /**
+     * This class purpose is to deploy unpack proper DLL libraries of Jacob solution so that our program can access ActiveX objects, ROT table etc.
+     * Program needs it to properly communicate with SAP scripting layer that shares it's objects on ROT table.
+     * Depending on system architecture of currently running system, class will deploy x86 | x64 DLL to temporary windows folder so that it can be then
+     * loaded to memory. Library cannot be loaded to memory directly from a jar file, it has to be 'unpacked' first.
+     **/
 
-    private File temporaryDll;
+    private static final String LIBRARY_SUFFIX = ".dll";
+    private static final String ROOT_PATH_TO_LIBRARIES = "/external_libraries/";
+    private static final String LIBRARY_32_BIT_NAME = "jacob-1.14.3-x86";
+    private static final String LIBRARY_64_BIT_NAME = "jacob-1.14.3-x64";
+    private static final String LOG_DLL_LOADED = "Jacob dll was loaded into memory";
+    private static final String LOG_DLL_NOT_LOADED = "Library could not be loaded";
+
     private String systemArchitecture;
     private final Log loadLibraryLog = new Log(
             "Desktop app",
@@ -40,7 +46,7 @@ public class JacobLoader {
             String libraryPath = supplyLibraryPath();
             String temporaryDirectory = System.getProperty("java.io.tmpdir");
 
-            temporaryDll = new File(temporaryDirectory + libraryPath + LIBRARY_SUFFIX);
+            File temporaryDll = new File(temporaryDirectory + libraryPath + LIBRARY_SUFFIX);
 
             File libraryInTemporaryFolder = new File(temporaryDll.getPath());
 

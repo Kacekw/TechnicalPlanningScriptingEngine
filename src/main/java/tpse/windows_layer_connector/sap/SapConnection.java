@@ -8,12 +8,11 @@ import com.jacob.com.Variant;
 
 public class SapConnection {
 
+    /**
+     * Class obtains a SapScripting object from the ROT table, further operations are done using that object
+     */
+
     private static ActiveXComponent SapGui;
-
-
-    public static void disconnect() {
-        ComThread.Release();
-    }
 
     public static ActiveXComponent getSapGui() {
         ComThread.InitSTA();
@@ -28,5 +27,12 @@ public class SapConnection {
             return SapGui;
         }
 
+    }
+
+    /**
+     * disconnect() method provides option to simply release the thread and end connection to SAP ERP system so that it would end properly
+     **/
+    public static void disconnect() {
+        ComThread.Release();
     }
 }

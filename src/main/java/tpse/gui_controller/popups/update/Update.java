@@ -6,7 +6,6 @@ import tpse.updater.deploying.UpdaterDeploy;
 
 import java.util.Optional;
 
-
 public class Update {
 
     private final String UPDATE_POPUP_TITLE = "Newer version is available";
@@ -18,7 +17,6 @@ public class Update {
         updatePopup.setTitle(UPDATE_POPUP_TITLE);
         updatePopup.setHeaderText(UPDATE_POPUP_HEADER);
         updatePopup.setContentText(UPDATE_POPUP_CONTEXT);
-//        updatePopup.initOwner(updatePopup.getOwner());
 
         Optional<ButtonType> result = updatePopup.showAndWait();
         if (result.get() == ButtonType.OK) {
